@@ -89,5 +89,6 @@ window.addEventListener('DOMContentLoaded', function(){
   </article>`;
   })
   displayMenu = displayMenu.join("");
+  // console.log(displayMenu) --------no nos sireve displayMenu asi como esta por que se aplica como texto plano en el navegador, para eso es el .join, para unir todo en un formato legible para el navegador usando ""
   sectionCenter.innerHTML = displayMenu
 })
