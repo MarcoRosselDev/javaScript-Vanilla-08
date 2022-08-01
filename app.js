@@ -74,7 +74,7 @@ const menu = [
     {
       id: 10,
       title: "buttermilk pancakes",
-      category: "lunck",
+      category: "dinner",
       price: 15.99,
       img: "./images/item-1.jpeg",
       desc: `I'm baby woke mlkshk wolf bitters live-edge blue bottle, hammock freegan copper mug whatever cold-pressed `,
@@ -87,9 +87,12 @@ const filterBtn = document.querySelectorAll('.filter-btn');
 // load items
 window.addEventListener('DOMContentLoaded', function(){
   displayMenuItems(menu);
-  const categories = menu.map(function (item){
-    return item.category;
-  })
+  const categories = menu.reduce(function (values, item){
+    if(!values.includes(item.category)) {
+      values.push(item.category);
+    }
+    return values;
+  }, ['all'])
   console.log(categories);
 });
 
