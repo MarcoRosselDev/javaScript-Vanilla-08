@@ -82,7 +82,7 @@ const menu = [
   ];
 
 const sectionCenter = document.querySelector('.section-center');
-const filterBtn = document.querySelectorAll('.filter-btn');
+const container = document.querySelector('.btn-container');
 
 // load items
 window.addEventListener('DOMContentLoaded', function(){
@@ -92,28 +92,36 @@ window.addEventListener('DOMContentLoaded', function(){
       values.push(item.category);
     }
     return values;
-  }, ['all'])
-  console.log(categories);
+  }, ['all']);
+  const categoryBtns = categories.map(function(category) {
+    return `<button class="filter-btn" type="button" data-id=${category}>
+    ${category}
+  </button>`
+  })
+  .join("");
+  container.innerHTML = categoryBtns;
+  const filterBtn = document.querySelectorAll('.filter-btn');
+  filterBtn.forEach(function(btn) {
+    btn.addEventListener('click', function(e){
+      const category = e.currentTarget.dataset.id;
+      const menuCategory = menu.filter(function (menuItem) {
+        // console.log(menuItem.category);
+        if(menuItem.category === category) {
+          return menuItem
+        }
+      });
+      // console.log(menuCategory);
+      if(category === 'all') {
+        displayMenuItems(menu);
+      } else {
+        displayMenuItems(menuCategory);
+      }
+    });
+  });
+
 });
 
 // filter items
-filterBtn.forEach(function(btn) {
-  btn.addEventListener('click', function(e){
-    const category = e.currentTarget.dataset.id;
-    const menuCategory = menu.filter(function (menuItem) {
-      // console.log(menuItem.category);
-      if(menuItem.category === category) {
-        return menuItem
-      }
-    });
-    // console.log(menuCategory);
-    if(category === 'all') {
-      displayMenuItems(menu);
-    } else {
-      displayMenuItems(menuCategory);
-    }
-  });
-});
 
 function displayMenuItems(menuItems) {
   let displayMenu = menuItems.map(function(item) {
