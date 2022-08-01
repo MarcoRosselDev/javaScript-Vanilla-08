@@ -79,6 +79,8 @@ const filterBtn = document.querySelectorAll('.filter-btn');
 // load items
 window.addEventListener('DOMContentLoaded', function(){
   displayMenuItems(menu);
+
+  
 });
 
 // filter items
@@ -86,12 +88,19 @@ filterBtn.forEach(function(btn) {
   btn.addEventListener('click', function(e){
     const category = e.currentTarget.dataset.id;
     const menuCategory = menu.filter(function (menuItem) {
-      console.log(menuItem.category);
-      return menuItem.category;
+      // console.log(menuItem.category);
+      if(menuItem.category === category) {
+        return menuItem
+      }
     });
-    console.log(menuCategory);
-  })
-})
+    // console.log(menuCategory);
+    if(category === 'all') {
+      displayMenuItems(menu);
+    } else {
+      displayMenuItems(menuCategory);
+    }
+  });
+});
 
 function displayMenuItems(menuItems) {
   let displayMenu = menuItems.map(function(item) {
