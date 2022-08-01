@@ -71,6 +71,14 @@ const menu = [
       img: "./images/item-9.jpeg",
       desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
     },
+    {
+      id: 10,
+      title: "buttermilk pancakes",
+      category: "lunck",
+      price: 15.99,
+      img: "./images/item-1.jpeg",
+      desc: `I'm baby woke mlkshk wolf bitters live-edge blue bottle, hammock freegan copper mug whatever cold-pressed `,
+    },
   ];
 
 const sectionCenter = document.querySelector('.section-center');
@@ -79,8 +87,10 @@ const filterBtn = document.querySelectorAll('.filter-btn');
 // load items
 window.addEventListener('DOMContentLoaded', function(){
   displayMenuItems(menu);
-
-  
+  const categories = menu.map(function (item){
+    return item.category;
+  })
+  console.log(categories);
 });
 
 // filter items
