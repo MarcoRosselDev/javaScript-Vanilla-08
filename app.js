@@ -76,7 +76,11 @@ const menu = [
 const sectionCenter = document.querySelector('.section-center');
 
 window.addEventListener('DOMContentLoaded', function(){
-  let displayMenu = menu.map(function(item) {
+  displayMenuItems(menu);
+});
+
+function displayMenuItems(menuItems) {
+  let displayMenu = menuItems.map(function(item) {
     return `<article class="menu-item">
     <img src=${item.img} class="photo" alt=${item.title}>
     <div class="item-info">
@@ -87,8 +91,7 @@ window.addEventListener('DOMContentLoaded', function(){
       <p class="item-text">${item.desc}</p>
     </div>
   </article>`;
-  })
+  });
   displayMenu = displayMenu.join("");
-  // console.log(displayMenu) --------no nos sireve displayMenu asi como esta por que se aplica como texto plano en el navegador, para eso es el .join, para unir todo en un formato legible para el navegador usando ""
-  sectionCenter.innerHTML = displayMenu
-})
+  sectionCenter.innerHTML = displayMenu;
+}
